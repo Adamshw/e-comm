@@ -17,7 +17,7 @@ const App = () => {
   }, []);
   return (
     <div >
-      <Products />
+      <Products products={products}/>
       <Navbar />
     </div>
   )
