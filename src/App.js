@@ -32,7 +32,6 @@ const App = () => {
       {/* <Products products={products} onAddToCart={handleAddToCart} /> */}
       <Navbar totalItems={cart.total_items} />
       <Cart lineItem={cart.line_items} subTotalItem={cart?.subtotal} />
-      {/* <Cart cart={cart} /> */}
     </div>
   )
 }
