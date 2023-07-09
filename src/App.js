@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import { commerce } from './lib/commerce'
 
 import { Products, Navbar, Cart } from './components'
@@ -28,11 +30,16 @@ const App = () => {
   }, []);
 
   return (
-    <div >
-      {/* <Products products={products} onAddToCart={handleAddToCart} /> */}
-      <Navbar totalItems={cart.total_items} />
-      <Cart lineItem={cart.line_items} subTotalItem={cart?.subtotal} />
-    </div>
+    <Router>
+      <div >
+        <Navbar totalItems={cart.total_items} />
+        <Routes>
+          <Route exact path="/" element={<Products products={products} onAddToCart={handleAddToCart} />}></Route>
+          <Route exact path="/cart" element={<Cart lineItem={cart.line_items} subTotalItem={cart?.subtotal} />}></Route>
+        </Routes>
+      </div>
+    </Router>
+
   )
 }
 

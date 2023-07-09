@@ -48,7 +48,7 @@ const Cart = ({ lineItem, subTotalItem }) => {
                 </Typography>
                 :
                 <>
-                    <Typography className={classes.title} variant='h3'>Your Shopping Cart</Typography>
+                    <Typography className={classes.title} variant='h3' gutterBottom>Your Shopping Cart</Typography>
                     {lineItem.length ? <FilledCart /> : <EmptyCart />}
                 </>
             }
