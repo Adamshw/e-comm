@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Typography, Button, Grid } from '@material-ui/core';
 import useStyles from './styles';
+import { Link } from 'react-router-dom';
 import CartItem from './CartItem/CartItem';
 const Cart = ({ lineItem, subTotalItem }) => {
     
@@ -8,7 +9,9 @@ const Cart = ({ lineItem, subTotalItem }) => {
 
     const EmptyCart = () => {
         return (
-            <Typography variant='subtitle1'>You have no items in your shopping cart</Typography>
+            <Typography variant='subtitle1'>You have no items in your shopping cart,
+            <Link to='/' className={classes.link}> start adding some!</Link>
+            </Typography>
 
         )
 
