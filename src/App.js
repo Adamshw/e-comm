@@ -19,10 +19,27 @@ const App = () => {
     setCart(await commerce.cart.retrieve());
   };
 
-  const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
-    setCart(item);
+  const onAddToCart = async (productId, quantity) => {
+    const res = await commerce.cart.add(productId, quantity);
+    setCart(res);
   };
+
+  const onUpdateCardQty = async (lineItemId, quantity) => {
+    const res = await commerce.cart.update(lineItemId, { quantity });
+    setCart(res);
+  }
+
+  const onRemoveFromCart = async (lineItemId) => {
+    const res = await commerce.cart.remove(lineItemId);
+
+    setCart(res);
+  };
+  const onEmptyCart = async () => {
+    const res = await commerce.cart.empty();
+
+    setCart(res);
+  };
+
 
   useEffect(() => {
     fetchProducts();
@@ -34,8 +51,12 @@ const App = () => {
       <div >
         <Navbar totalItems={cart.total_items} />
         <Routes>
-          <Route exact path="/" element={<Products products={products} onAddToCart={handleAddToCart} />}></Route>
-          <Route exact path="/cart" element={<Cart lineItem={cart.line_items} subTotalItem={cart?.subtotal} />}></Route>
+          <Route exact path="/" element={<Products products={products} onAddToCart={onAddToCart} />}></Route>
+          <Route exact path="/cart" element={<Cart lineItem={cart.line_items}
+           onUpdateCardQty={onUpdateCardQty}
+            onRemoveFromCart={onRemoveFromCart}
+            onEmptyCart={onEmptyCart}
+            subTotalItem={cart?.subtotal} />}></Route>
         </Routes>
       </div>
     </Router>
