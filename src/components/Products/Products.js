@@ -1,6 +1,7 @@
 import React from "react"
 import { Typography, Grid } from '@material-ui/core';
 import Product from "./Product/Product"
+import Spinner from "../Spinner/Spinner"
 import useStyle from './styles'
 
 const Products = ({ products, onAddToCart }) => {
@@ -12,9 +13,7 @@ const Products = ({ products, onAddToCart }) => {
                 products?.length === 0 ?
                     <>
                         <div className={classes.toolbar} />
-                        <Typography variant='h4'>
-                            Laoding ...
-                        </Typography>
+                        <Spinner />
                     </>
                     :
                     <>

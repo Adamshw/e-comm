@@ -3,6 +3,7 @@ import { Container, Typography, Button, Grid } from '@material-ui/core';
 import useStyles from './styles';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem/CartItem';
+import Spinner from '../Spinner/Spinner'
 const Cart = ({ lineItem, subTotalItem, onUpdateCardQty, onRemoveFromCart, onEmptyCart }) => {
 
     const classes = useStyles();
@@ -46,9 +47,7 @@ const Cart = ({ lineItem, subTotalItem, onUpdateCardQty, onRemoveFromCart, onEmp
         <Container>
             <div className={classes.toolbar} />
             {!lineItem ?
-                <Typography variant='h4'>
-                    Laoding ...
-                </Typography>
+                <Spinner />
                 :
                 <>
                     <Typography className={classes.title} variant='h3' gutterBottom>Your Shopping Cart</Typography>
