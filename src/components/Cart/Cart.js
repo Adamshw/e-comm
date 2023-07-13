@@ -46,16 +46,14 @@ const Cart = ({ lineItem, subTotalItem, onUpdateCardQty, onRemoveFromCart, onEmp
 
         <Container>
             <div className={classes.toolbar} />
-            {!lineItem ?
-                <Spinner />
-                :
+            <Spinner visible={!lineItem} />
+            {lineItem &&
                 <>
                     <Typography className={classes.title} variant='h3' gutterBottom>Your Shopping Cart</Typography>
                     {lineItem.length ? <FilledCart /> : <EmptyCart />}
                 </>
             }
         </Container >
-
     )
 }
 

@@ -3,7 +3,7 @@ import { Oval } from 'react-loader-spinner';
 import useStyle from './styles'
 
 
-const Spinner = () => {
+const Spinner = ({visible}) => {
     const classes = useStyle()
 
     return (
@@ -14,7 +14,7 @@ const Spinner = () => {
                 color="white"
                 wrapperStyle={{}}
                 wrapperClass=""
-                visible={true}
+                visible={visible}
                 ariaLabel='oval-loading'
                 secondaryColor="black"
                 strokeWidth={2}
