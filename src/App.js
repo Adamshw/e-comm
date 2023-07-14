@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { commerce } from './lib/commerce'
 
-import { Products, Navbar, Cart } from './components'
+import { Products, Navbar, Cart, Checkout } from './components'
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -53,10 +53,14 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Products products={products} onAddToCart={onAddToCart} />}></Route>
           <Route exact path="/cart" element={<Cart lineItem={cart.line_items}
-           onUpdateCardQty={onUpdateCardQty}
+            onUpdateCardQty={onUpdateCardQty}
             onRemoveFromCart={onRemoveFromCart}
             onEmptyCart={onEmptyCart}
-            subTotalItem={cart?.subtotal} />}></Route>
+            subTotalItem={cart?.subtotal} />}>
+          </Route>
+          <Route exact path="/checkout" element={<Checkout/>}>
+
+          </Route>
         </Routes>
       </div>
     </Router>
