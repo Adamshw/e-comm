@@ -58,7 +58,7 @@ const App = () => {
             onEmptyCart={onEmptyCart}
             subTotalItem={cart?.subtotal} />}>
           </Route>
-          <Route exact path="/checkout" element={<Checkout/>}>
+          <Route exact path="/checkout" element={<Checkout cart={cart} />}>
 
           </Route>
         </Routes>
