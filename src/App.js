@@ -8,6 +8,8 @@ import { Products, Navbar, Cart, Checkout } from './components'
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({})
+  const [order, setOrder] = useState({})
+  const [errorMessage, setErrorMessage] = useState('')
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -40,6 +42,19 @@ const App = () => {
     setCart(res);
   };
 
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+    setCart(newCart);
+  }
+  const onCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId,)
+      setOrder(incomingOrder);
+      refreshCart();
+    } catch (e) {
+      setErrorMessage(e.data.error.message)
+    }
+  }
 
   useEffect(() => {
     fetchProducts();
@@ -51,14 +66,18 @@ const App = () => {
       <div >
         <Navbar totalItems={cart.total_items} />
         <Routes>
-          <Route exact path="/" element={<Products products={products} onAddToCart={onAddToCart} />}></Route>
+          <Route exact path="/" element={<Products products={products}
+            onAddToCart={onAddToCart} />}></Route>
           <Route exact path="/cart" element={<Cart lineItem={cart.line_items}
             onUpdateCardQty={onUpdateCardQty}
             onRemoveFromCart={onRemoveFromCart}
             onEmptyCart={onEmptyCart}
             subTotalItem={cart?.subtotal} />}>
           </Route>
-          <Route exact path="/checkout" element={<Checkout cart={cart} />}>
+          <Route exact path="/checkout" element={<Checkout cart={cart}
+            order={order}
+            onCaptureCheckout={onCaptureCheckout}
+            error={errorMessage} />}>
 
           </Route>
         </Routes>
