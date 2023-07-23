@@ -9,9 +9,10 @@ const FormInput = ({ name, label }) => {
             <Controller
                 control={control}
                 name={name}
-                render={({ }) => (
+                render={({ field }) => (
                     <TextField
                         fullWidth
+                        {...field}
                         label={label}
                         required={true}
 

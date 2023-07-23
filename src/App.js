@@ -48,7 +48,7 @@ const App = () => {
   }
   const onCaptureCheckout = async (checkoutTokenId, newOrder) => {
     try {
-      const incomingOrder = await commerce.checkout.capture(checkoutTokenId,)
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder)
       setOrder(incomingOrder);
       refreshCart();
     } catch (e) {

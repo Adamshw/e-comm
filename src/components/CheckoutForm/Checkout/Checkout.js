@@ -27,7 +27,10 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
                 console.log(e)
             }
         }
-        generateToken();
+        if (cart.line_items) {
+            generateToken();
+
+        }
     }, [cart]);
 
     const nextStep = () => setActiveStep((prev) => prev + 1);
@@ -47,7 +50,8 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
 
     const Form = () => activeStep === 0
         ? <AddressForm checkoutToken={checkoutToken} next={next} />
-        : <PaymentForm shippingData={shippingData}
+        : <PaymentForm
+            shippingData={shippingData}
             checkoutToken={checkoutToken}
             backStep={backStep}
             onCaptureCheckout={onCaptureCheckout}
